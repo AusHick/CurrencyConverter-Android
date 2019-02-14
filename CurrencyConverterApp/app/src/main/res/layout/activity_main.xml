@@ -7,6 +7,69 @@
 	tools:context=".MainActivity">
 
 	<LinearLayout
+		android:id="@+id/linearLayoutUSD"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		android:orientation="horizontal"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<ImageView
+			android:id="@+id/imageUS"
+			android:layout_width="wrap_content"
+			android:layout_height="40dp"
+			android:layout_weight="0"
+			android:adjustViewBounds="true"
+			android:scaleType="fitCenter"
+			app:srcCompat="@drawable/us" />
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="0"
+			android:orientation="vertical">
+
+			<TextView
+				android:id="@+id/textViewFrom"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="From"
+				android:textAllCaps="true" />
+
+			<TextView
+				android:id="@+id/textViewUSD"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="USD"
+				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+		</LinearLayout>
+
+		<EditText
+			android:id="@+id/editUSD"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginLeft="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginRight="8dp"
+			android:layout_weight="0"
+			android:ems="10"
+			android:hint="$0.00"
+			android:inputType="numberDecimal"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/linearLayout"
+			app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+	</LinearLayout>
+
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/rvCurrencies"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_marginStart="8dp"
@@ -15,180 +78,10 @@
 		android:layout_marginEnd="8dp"
 		android:layout_marginRight="8dp"
 		android:layout_marginBottom="8dp"
-		android:orientation="vertical"
+		android:scrollbars="vertical"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent">
-
-		<LinearLayout
-			android:id="@+id/linearLayoutUSD"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="8dp"
-			android:orientation="horizontal"
-			app:layout_constraintTop_toTopOf="parent"
-			tools:layout_editor_absoluteX="8dp">
-
-			<ImageView
-				android:id="@+id/imageUS"
-				android:layout_width="wrap_content"
-				android:layout_height="40dp"
-				android:layout_weight="0"
-				android:adjustViewBounds="true"
-				android:scaleType="fitCenter"
-				app:srcCompat="@drawable/us" />
-
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="0"
-				android:orientation="vertical">
-
-				<TextView
-					android:id="@+id/textViewFrom"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:text="From"
-					android:textAllCaps="true" />
-
-				<TextView
-					android:id="@+id/textViewUSD"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="USD"
-					android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-			</LinearLayout>
-
-			<EditText
-				android:id="@+id/editUSD"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="8dp"
-				android:layout_marginLeft="8dp"
-				android:layout_marginEnd="8dp"
-				android:layout_marginRight="8dp"
-				android:layout_weight="0"
-				android:ems="10"
-				android:hint="$0.00"
-				android:inputType="numberDecimal"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintStart_toEndOf="@+id/linearLayout"
-				app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:id="@+id/linearLayoutCAD"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="32dp"
-			android:orientation="horizontal"
-			app:layout_constraintTop_toBottomOf="@+id/linearLayoutUSD"
-			tools:layout_editor_absoluteX="8dp">
-
-			<ImageView
-				android:id="@+id/imageCAD"
-				android:layout_width="wrap_content"
-				android:layout_height="40dp"
-				android:layout_weight="0"
-				android:adjustViewBounds="true"
-				android:scaleType="fitCenter"
-				app:srcCompat="@drawable/ca" />
-
-			<TextView
-				android:id="@+id/textViewCAD"
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_weight="0"
-				android:gravity="center|center_vertical"
-				android:text="CAD"
-				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-			<TextView
-				android:id="@+id/textViewCADOut"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_weight="0"
-				android:gravity="right|center_vertical"
-				android:text="$ 0.00"
-				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-		</LinearLayout>
-
-		<LinearLayout
-			android:id="@+id/linearLayoutEuro"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="32dp"
-			android:orientation="horizontal"
-			app:layout_constraintTop_toBottomOf="@+id/linearLayoutCAD"
-			tools:layout_editor_absoluteX="8dp">
-
-			<ImageView
-				android:id="@+id/imageEUR"
-				android:layout_width="wrap_content"
-				android:layout_height="40dp"
-				android:layout_weight="0"
-				android:adjustViewBounds="true"
-				android:scaleType="fitCenter"
-				app:srcCompat="@drawable/eu" />
-
-			<TextView
-				android:id="@+id/textViewEUR"
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_weight="0"
-				android:gravity="center"
-				android:text="EUR"
-				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-			<TextView
-				android:id="@+id/textViewEUROut"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_weight="0"
-				android:gravity="right|center_vertical"
-				android:text="€ 0.00"
-				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:id="@+id/linearLayoutPeso"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="32dp"
-			android:orientation="horizontal"
-			app:layout_constraintTop_toBottomOf="@+id/linearLayoutEuro"
-			tools:layout_editor_absoluteX="8dp">
-
-			<ImageView
-				android:id="@+id/imageMXN"
-				android:layout_width="wrap_content"
-				android:layout_height="40dp"
-				android:layout_weight="0"
-				android:adjustViewBounds="true"
-				android:scaleType="fitCenter"
-				app:srcCompat="@drawable/mx" />
-
-			<TextView
-				android:id="@+id/textViewMXN"
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_weight="0"
-				android:gravity="center"
-				android:text="MXN"
-				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-			<TextView
-				android:id="@+id/textViewMXNOut"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_weight="0"
-				android:gravity="right|center_vertical"
-				android:text="MEX$ 0.00"
-				android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-		</LinearLayout>
-	</LinearLayout>
+		app:layout_constraintTop_toBottomOf="@+id/linearLayoutUSD" />
 
 </android.support.constraint.ConstraintLayout>

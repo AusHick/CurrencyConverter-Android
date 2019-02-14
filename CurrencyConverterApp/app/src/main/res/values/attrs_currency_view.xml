@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="CurrencyView">
+        <attr name="currency" format="string" />
+        <attr name="moneyAmount" format="float" />
+        <attr name="fontSize" format="integer" />
+    </declare-styleable>
+</resources>
