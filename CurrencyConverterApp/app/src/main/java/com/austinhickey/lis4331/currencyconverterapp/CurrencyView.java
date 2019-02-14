@@ -2,11 +2,6 @@ package com.austinhickey.lis4331.currencyconverterapp;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -14,7 +9,6 @@ public class CurrencyView extends View {
     private String mCurrencyString;
     private float mAmount;
     private int mFontSize;
-    private Drawable mFlag;
 
     public CurrencyView(Context context) {
         super(context);
@@ -39,13 +33,7 @@ public class CurrencyView extends View {
         mCurrencyString = a.getString(R.styleable.CurrencyView_currency);
         mAmount = a.getFloat(R.styleable.CurrencyView_moneyAmount, mAmount);
         mFontSize = a.getInt(R.styleable.CurrencyView_fontSize, mFontSize);
-/*
-        if (a.hasValue(R.styleable.CurrencyView_exampleDrawable)) {
-            mExampleDrawable = a.getDrawable(
-                    R.styleable.CurrencyView_exampleDrawable);
-            mExampleDrawable.setCallback(this);
-        }
-*/
+
         a.recycle();
     }
 

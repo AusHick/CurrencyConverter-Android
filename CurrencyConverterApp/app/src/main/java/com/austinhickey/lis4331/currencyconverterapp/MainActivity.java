@@ -1,8 +1,8 @@
 package com.austinhickey.lis4331.currencyconverterapp;
 
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -10,16 +10,13 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Currency;
-import java.util.HashMap;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Locale;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,13 +24,20 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		List<CurrencyContainer> currencyContainerList = new ArrayList<>(); //stoopid java
 
-		final JSONObject currencyData;
+		RecyclerView currenciesList = findViewById(R.id.rvCurrencies);
+		final CurrencyAdapter cAdapter = new CurrencyAdapter(currencyContainerList);
+		LinearLayoutManager llm = new LinearLayoutManager(this);
+		currenciesList.setLayoutManager(llm);
+		currenciesList.setItemAnimator(new DefaultItemAnimator());
+		currenciesList.setAdapter(cAdapter);
+		currenciesList.setHasFixedSize(true);
+
 		try {
-			currencyData = new JSONObject(getIntent().getStringExtra("CurrencyJSON"));
+			JSONObject currencyData = new JSONObject(getIntent().getStringExtra("CurrencyJSON"));
 			final JSONObject rates = currencyData.getJSONObject("rates");
 			Iterator<String> it = rates.keys();
-            HashMap<Currency,Double> currencyRates = new HashMap<>();
 
 			Log.d("JSON Size", "Parsing " + rates.length() + " objects");
 
@@ -42,19 +46,14 @@ public class MainActivity extends AppCompatActivity {
 				String k = it.next();
 				if(k.equals("USD")) //TODO: programatically get the base currency
 					continue;
-                currencyRates.put(Currency.getInstance(k),rates.getDouble(k));
+                currencyContainerList.add(new CurrencyContainer(k,rates.getDouble(k), new File(getCacheDir(),k.substring(0,2).toLowerCase())));
 				Log.d(k,rates.getString(k));
 			}
+
+			cAdapter.notifyDataSetChanged();
 		} catch(JSONException e) {
 			Log.e("JSON Error","Failed to reparse JSON data! " + e.toString());
 		}
-
-		RecyclerView currenciesList = findViewById(R.id.rvCurrencies);
-		LinearLayoutManager llm = new LinearLayoutManager(this);
-		currenciesList.setLayoutManager(llm);
-		currenciesList.setHasFixedSize(true);
-
-		CurrencyAdapter cAdapter = new CurrencyAdapter
 
 		((EditText)findViewById(R.id.editUSD)).addTextChangedListener(new TextWatcher() {
 			@Override
@@ -69,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-
+				Double temp = s.toString().isEmpty() ? 1.00 : Double.parseDouble(s.toString());
+				Log.d("Change","New value is " + temp);
+				cAdapter.updateBaseCurrency(temp);
 			}
 		});
 	}

@@ -29,6 +29,11 @@
 			android:scaleType="fitCenter"
 			app:srcCompat="@drawable/us" />
 
+		<Space
+			android:layout_width="10dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="0" />
+
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -61,11 +66,10 @@
 			android:layout_marginRight="8dp"
 			android:layout_weight="0"
 			android:ems="10"
-			android:hint="$0.00"
+			android:hint="$1.00"
 			android:inputType="numberDecimal"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="@+id/linearLayout"
-			app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+			android:textAlignment="textEnd"
+			app:layout_constraintEnd_toEndOf="parent" />
 	</LinearLayout>
 
 	<android.support.v7.widget.RecyclerView
