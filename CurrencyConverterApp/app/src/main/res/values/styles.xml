@@ -9,7 +9,7 @@
 	</style>
 
 	<style name="AppTheme.Launcher">
-		<item name="android:windowBackground">@drawable/splash_center</item>
+		<!--<item name="android:windowBackground">@drawable/splash_center</item>-->
 		<item name="android:colorBackground">@android:color/white</item>
 	</style>
 
